@@ -54,7 +54,18 @@ http://localhost:4000/api/v1/me/update
 http://localhost:4000/api/v1/admin/users
 
 9.get
-http://localhost:4000/api/v1/admin/user:id
+http://localhost:4000/api/v1/admin/user/:id
+
+10.put
+http://localhost:4000/api/v1/admin/user/:id
+{
+    "name":"test0",
+    "email":"souvikdaw2000@gmail.com",
+    "role":"admin"
+}
+
+11.delete
+http://localhost:4000/api/v1/admin/user/:id
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -112,3 +123,91 @@ http://localhost:4000/api/v1/products?category=Laptop&page=2
 11.get
 http://localhost:4000/api/v1/products?price[gt]=4
 
+12.put
+http://localhost:4000/api/v1/review
+{
+    "productId":"62f7914460d7ff69ef857d97",
+    "comment":"very good",
+    "rating":4
+}
+
+13.get
+http://localhost:4000/api/v1/reviews?id=62f7914460d7ff69ef857d97
+
+14.delete
+http://localhost:4000/api/v1/reviews?productId=62f7914460d7ff69ef857d97
+//not working
+
+-------------------------------------------------------------------------------------
+order:
+1.post
+http://localhost:4000/api/v1/order/new
+{
+"shippingInfo":{
+"address":"123",
+"city":"LA",
+"state":"calf",
+"country":"USA",
+"pinCode":"700059",
+"phoneNo":"7894561235"
+},
+"orderItems":[
+  {
+  "product":"62f7920bf0bc02f7b3fa4269",
+  "name":"product3",
+  "price":2,
+  "image":"sample",
+  "quantity":1
+  }
+],
+"paymentInfo":{
+"id":"sample payment info",
+"status":"success"
+},
+"itemsPrice":2,
+"taxPrice":6,
+"shippingPrice":10,
+"totalPrice":18
+}
+
+2.get
+http://localhost:4000/api/v1/order/646a04f7ca29555af4959cfa
+
+3.get
+http://localhost:4000/api/v1/orders/me
+
+4.get
+http://localhost:4000/api/v1/admin/orders
+
+5.put
+http://localhost:4000/api/v1/admin/order/:id
+{
+"shippingInfo":{
+"address":"123",
+"city":"LA",
+"state":"calf",
+"country":"USA",
+"pinCode":"700059",
+"phoneNo":"7894561235"
+},
+"orderItems":[
+  {
+  "product":"62f7920bf0bc02f7b3fa4269",
+  "name":"product3",
+  "price":2,
+  "image":"sample",
+  "quantity":1
+  }
+],
+"paymentInfo":{
+"id":"sample payment info",
+"status":"success"
+},
+"itemsPrice":2,
+"taxPrice":6,
+"shippingPrice":10,
+"totalPrice":18
+}
+
+6.delete
+http://localhost:4000/api/v1/admin/order/:id
