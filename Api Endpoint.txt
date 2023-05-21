@@ -17,6 +17,45 @@ http://localhost:4000/api/v1/login
 3.get
 http://localhost:4000/api/v1/logout
 
+4.post
+http://localhost:4000/api/v1/password/forgot
+{
+"email":"souvikdaw2000@gmail.com"
+}
+//not working
+//changes mage in catch block to not save undefined value
+
+4.put
+http://localhost:4000/api/v1/password/reset/:token
+{
+"password":"Test@2000",
+"confirmPassword":"Test@2000"
+}
+
+5.get
+http://localhost:4000/api/v1/me
+
+6.put
+http://localhost:4000/api/v1/password/update
+{
+"oldPassword":"Test@2000",
+"newPassword":"Test@2001",
+"confirmPassword":"Test@2001"
+}
+
+7.put
+http://localhost:4000/api/v1/me/update
+{
+"name":"test0",
+"email":"souvikdaw2000@gmail.com"
+}
+
+8.get
+http://localhost:4000/api/v1/admin/users
+
+9.get
+http://localhost:4000/api/v1/admin/user:id
+
 ------------------------------------------------------------------------------------------------------------------------------------
 
 Product:
@@ -24,7 +63,7 @@ Product:
 http://localhost:4000/api/v1/products
 
 2.post
-http://localhost:4000/api/v1/product/new
+http://localhost:4000/api/v1/admin/product/new
 {
 "name":"product4",
 "description":"abcd",
@@ -43,7 +82,7 @@ http://localhost:4000/api/v1/products?page=3
 http://localhost:4000/api/v1/product/:id
 
 5.put
-http://localhost:4000/api/v1/product/:id
+http://localhost:4000/api/v1/admin/product/:id
 {
 "name":"product4",
 "description":"abcd",
@@ -56,7 +95,7 @@ http://localhost:4000/api/v1/product/:id
 }
 
 6.delete
-http://localhost:4000/api/v1/product/:id
+http://localhost:4000/api/v1/admin/product/:id
 
 7.get
 http://localhost:4000/api/v1/products?keyword=product2
