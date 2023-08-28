@@ -21,7 +21,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, _next) => {
 
 
 //get all products
-exports.getAllProducts =catchAsyncErrors( async (req, res, _next)=>{
+exports.getAllProducts =catchAsyncErrors( async (req, res, next)=>{
+  
+  //Test exception
+  //return next(new ErrorHandler("test error",500));
   
   const resultPerPage=3;
 
