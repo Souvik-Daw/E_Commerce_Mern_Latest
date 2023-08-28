@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import MetaData from "../layout/MetaData";
 import "./Search.css";
-import { createHashHistory } from 'history'
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {

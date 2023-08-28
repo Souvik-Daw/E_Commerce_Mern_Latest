@@ -28,7 +28,7 @@ function App() {
       <Route exact path="/product/:id" element={<ProductDetails />} />
       <Route exact path="/products" element={<Products />} />
       <Route exact path="/search" element={<Search />} />
-        
+      <Route path="/products/:keyword" element={<Products />} />  
         
       </Routes>
       <Footer />
