@@ -14,6 +14,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     // });
   
     const { name, email, password } = req.body;
+
+    console.log(name+" name   "+email+" email    ")
   
     const user = await User.create({
       name,
@@ -197,6 +199,9 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
   };
+
+  console.log(newUserData.name+" name   "+newUserData.email+" email    ")
+
 
   // if (req.body.avatar !== "") {
   //   const user = await User.findById(req.user.id);
