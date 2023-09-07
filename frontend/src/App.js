@@ -16,6 +16,7 @@ import UserOptions from "./component/layout/Header/UserOptions.js";
 import Profile from "./component/User/Profile.js";
 import ProtectedRoute from "./component/Route/ProtectedRoute.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
+import UpdatePassword from "./component/User/UpdatePassword.js";
 
 function App() {
 
@@ -47,7 +48,6 @@ function App() {
 
       </Routes>
       
-      {/* isAdmin is not tested,not redirection to login after unauthorising */}
       {
       isAuthenticated===true ?
       <ProtectedRoute exact path="/account" element={<Profile />} />
@@ -61,6 +61,16 @@ function App() {
       :
       null
       }
+
+      {
+      isAuthenticated===true ? 
+      <ProtectedRoute exact path="/password/update" element={<UpdatePassword />} />
+      :
+      null
+      }
+
+
+     
       
       <Footer />
     </Router>

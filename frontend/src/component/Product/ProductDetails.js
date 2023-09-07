@@ -16,6 +16,8 @@ import ReviewCard from "./ReviewCard.js";
 
 const ProductDetails = ({ match }) => {
 
+    
+
     const { id } = useParams();
 
     const dispatch = useDispatch();
@@ -26,6 +28,26 @@ const ProductDetails = ({ match }) => {
     );
 
     console.log(id);
+
+    const [quantity, setQuantity] = useState(1);
+    const [open, setOpen] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("");
+
+    const increaseQuantity = () => {
+        if (product.Stock <= quantity) return;
+
+        const qty = quantity + 1;
+        setQuantity(qty);
+    };
+
+    const decreaseQuantity = event =>  {
+        event.preventDefault();
+        if (1 >= quantity) return;
+
+        const qty = quantity - 1;
+        setQuantity(qty);
+    };
 
     useEffect(() => {
         if (error) {
@@ -98,9 +120,9 @@ const ProductDetails = ({ match }) => {
                                     <h1>{`₹${product.price}`}</h1>
                                     <div className="detailsBlock-3-1">
                                         <div className="detailsBlock-3-1-1">
-                                            <button >-</button>
-                                            <input readOnly type="number" value="1" /><span>1</span>
-                                            <button >+</button>
+                                        <button onClick={decreaseQuantity}>-</button>
+                                        <input readOnly type="number" value={quantity} /><spam>{quantity}</spam>
+                                        <button onClick={increaseQuantity}>+</button>
                                         </div>
                                         <button>
                                             Add to Cart
