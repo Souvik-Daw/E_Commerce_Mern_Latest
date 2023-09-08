@@ -17,6 +17,11 @@ import Profile from "./component/User/Profile.js";
 import ProtectedRoute from "./component/Route/ProtectedRoute.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
+import Cart from "./component/Cart/Cart.js";
+import Shipping from "./component/Cart/Shipping.js";
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
+import Payment from "./component/Cart/Payment.js";
+import MyOrders from "./component/Order/MyOrders.js";
 
 function App() {
 
@@ -45,6 +50,7 @@ function App() {
       <Route exact path="/search" element={<Search />} />
       <Route path="/products/:keyword" element={<Products />} />  
       <Route exact path="/login" element={<LoginSignUp />} />
+      <Route exact path="/cart" element={<Cart />} />
 
       </Routes>
       
@@ -52,7 +58,7 @@ function App() {
       isAuthenticated===true ?
       <ProtectedRoute exact path="/account" element={<Profile />} />
       :
-      <h1>------------Login again to view this page------------</h1>
+      <h1>------------Login again to view this page, 404------------</h1>
       }
       
       {
@@ -69,8 +75,34 @@ function App() {
       null
       }
 
+      {
+      isAuthenticated===true ? 
+      <ProtectedRoute exact path="/shipping" element={<Shipping />} />
+      :
+      null
+      }
 
-     
+      {
+      isAuthenticated===true ? 
+      <ProtectedRoute exact path="/order/confirm" element={<ConfirmOrder />} />
+      :
+      null
+      }
+
+      {
+      isAuthenticated===true ? 
+      <ProtectedRoute exact path="/process/payment" element={<Payment />} />
+      :
+      null
+      }
+
+      {
+      isAuthenticated===true ? 
+      <ProtectedRoute exact path="/orders" element={<MyOrders />} />
+      :
+      null
+      }
+
       
       <Footer />
     </Router>

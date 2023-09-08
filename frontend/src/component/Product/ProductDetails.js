@@ -13,6 +13,7 @@ import { Link, useParams } from 'react-router-dom';
 import "./ProductDetails.css";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
+import { addItemsToCart } from "../../actions/cartAction";
 
 const ProductDetails = ({ match }) => {
 
@@ -76,6 +77,11 @@ const ProductDetails = ({ match }) => {
         isHalf: true,
     };
 
+    const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item Added To Cart");
+    };
+
     return (
         <div>
             <Fragment>
@@ -124,9 +130,10 @@ const ProductDetails = ({ match }) => {
                                         <input readOnly type="number" value={quantity} /><spam>{quantity}</spam>
                                         <button onClick={increaseQuantity}>+</button>
                                         </div>
-                                        <button>
-                                            Add to Cart
-                                        </button>
+                                        <button
+                                            disabled={product.Stock < 1 ? true : false}
+                                            onClick={addToCartHandler}
+                                        >Add to Cart</button>
                                     </div>
 
                                     <p>
