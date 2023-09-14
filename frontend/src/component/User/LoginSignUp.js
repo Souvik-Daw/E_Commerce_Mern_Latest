@@ -52,15 +52,34 @@ const LoginSignUp = ({ history, location }) => {
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
+    myForm.set("avatar", avatar);
     console.log("registerSubmit trigered")
     //console.log(name+" name   "+email+" email    ")
-    dispatch(register(name,email,password));
+    //dispatch(register(name,email,password));
+    dispatch(register(myForm));
   };
 
-  const registerDataChange = (e) => {
+  // const registerDataChange = (e) => {
     
+  //     setUser({ ...user, [e.target.name]: e.target.value });
+  //     console.log("registerDataChange trigered")
+  // };
+
+  const registerDataChange = (e) => {
+    if (e.target.name === "avatar") {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatarPreview(reader.result);
+          setAvatar(reader.result);
+        }
+      };
+
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
       setUser({ ...user, [e.target.name]: e.target.value });
-      console.log("registerDataChange trigered")
+    }
   };
 
   const redirect = 0//location.search ? location.search.split("=")[1] : "/account";
@@ -74,7 +93,7 @@ const LoginSignUp = ({ history, location }) => {
     if (isAuthenticated) {
       navigate(`/account`)
     }
-  }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+  }, [dispatch, error, alert, navigate, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -168,6 +187,15 @@ const LoginSignUp = ({ history, location }) => {
                     required
                     name="password"
                     value={password}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div id="registerImage">
+                  <img src={avatarPreview} alt="Avatar Preview" />
+                  <input
+                    type="file"
+                    name="avatar"
+                    accept="image/*"
                     onChange={registerDataChange}
                   />
                 </div>

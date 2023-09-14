@@ -2,6 +2,8 @@ const express = require("express");
 const app=express();
 const errorMiddleware = require("./middleware/error");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
 
 
 app.use(express.json());
@@ -14,6 +16,8 @@ const user = require("./routes/userRoute");
 //order route
 const order = require("./routes/orderRoute");
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 //product route pre map route 
 app.use("/api/v1", product);

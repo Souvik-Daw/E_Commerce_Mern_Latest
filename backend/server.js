@@ -1,5 +1,6 @@
 const app=require("./app");
 const connectDatabase = require("./config/database");
+const cloudinary = require("cloudinary");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -15,6 +16,12 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 // Database connection
 connectDatabase();
+
+cloudinary.config({
+    cloud_name: 'dopwofurl',
+    api_key: '127136761529161',
+    api_secret: 'XXiyyqJFGHqcsBrydqD6tY57lHc',
+  });
 
 // Server running
 var port=4000;

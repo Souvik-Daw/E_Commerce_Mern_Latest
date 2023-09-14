@@ -24,6 +24,7 @@ import Payment from "./component/Cart/Payment.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
+import Dashboard from "./component/Admin/Dashboard.js";
 
 function App() {
 
@@ -60,7 +61,7 @@ function App() {
         isAuthenticated === true ?
           <ProtectedRoute exact path="/account" element={<Profile />} />
           :
-          <h1>------------Login again to view this page, 404------------</h1>
+          null
       }
 
       {
@@ -120,9 +121,12 @@ function App() {
           null
       }
 
-
-
-
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/dashboard" element={<Dashboard />} />
+          :
+          null
+      }
 
       <Footer />
     </Router>
