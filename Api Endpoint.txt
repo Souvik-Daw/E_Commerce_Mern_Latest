@@ -138,6 +138,9 @@ http://localhost:4000/api/v1/reviews?id=62f7914460d7ff69ef857d97
 http://localhost:4000/api/v1/reviews?productId=62f7914460d7ff69ef857d97
 //not working
 
+15.get all product admin,with out filters
+http://localhost:4000/api/v1/admin/products
+
 -------------------------------------------------------------------------------------
 order:
 1.post

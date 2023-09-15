@@ -25,6 +25,8 @@ import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
+import NewProduct from "./component/Admin/NewProduct.js";
 
 function App() {
 
@@ -124,6 +126,20 @@ function App() {
       {
         isAuthenticated === true && user.role === 'admin' ?
           <ProtectedRoute exact path="/admin/dashboard" element={<Dashboard />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/products" element={<ProductList />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/product" element={<NewProduct />} />
           :
           null
       }
