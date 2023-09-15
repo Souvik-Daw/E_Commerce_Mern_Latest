@@ -65,6 +65,7 @@ const NewProduct = ({ history }) => {
     myForm.set("category", category);
     myForm.set("Stock", Stock);
 
+    
     images.forEach((image) => {
       myForm.append("images", image);
     });
@@ -84,9 +85,10 @@ const NewProduct = ({ history }) => {
         if (reader.readyState === 2) {
           setImagesPreview((old) => [...old, reader.result]);
           setImages((old) => [...old, reader.result]);
+          
         }
       };
-
+      
       reader.readAsDataURL(file);
     });
   };
