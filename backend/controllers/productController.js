@@ -122,6 +122,7 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
 //update product
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
+  
   let product = await Product.findById(req.params.id);
 
   if (!product) {
