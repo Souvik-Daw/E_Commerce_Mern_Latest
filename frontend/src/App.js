@@ -52,6 +52,9 @@ function App() {
 
   }, []);
 
+  //stop inspect and right click
+  //window.addEventListener("contextmenu", (e) => e.preventDefault());
+
   return (
     <Router>
       <Header />
@@ -67,33 +70,34 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/about" element={<About />} />
+        <Route exact path="*" element={<NotFound />} />
 
-      </Routes>
-
-      {
-        isAuthenticated === true ?
-          <ProtectedRoute exact path="/account" element={<Profile />} />
-          :
-          null
-      }
+      
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/me/update" element={<UpdateProfile />} />
+          <Route exact path="/account" element={<Profile />} />
           :
           null
       }
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/password/update" element={<UpdatePassword />} />
+          <Route exact path="/me/update" element={<UpdateProfile />} />
           :
           null
       }
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/shipping" element={<Shipping />} />
+          <Route exact path="/password/update" element={<UpdatePassword />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true ?
+          <Route exact path="/shipping" element={<Shipping />} />
           :
           null
       }
@@ -101,70 +105,70 @@ function App() {
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/process/payment" element={<Payment />} />
+          <Route exact path="/process/payment" element={<Payment />} />
           :
           null
       }
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/orders" element={<MyOrders />} />
+          <Route exact path="/orders" element={<MyOrders />} />
           :
           null
       }
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/success" element={<OrderSuccess />} />
+          <Route exact path="/success" element={<OrderSuccess />} />
           :
           null
       }
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/order/confirm" element={<ConfirmOrder />} />
+          <Route exact path="/order/confirm" element={<ConfirmOrder />} />
           :
           null
       }
 
       {
         isAuthenticated === true ?
-          <ProtectedRoute exact path="/getOrder/:id" element={<OrderDetails />} />
+          <Route exact path="/getOrder/:id" element={<OrderDetails />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/dashboard" element={<Dashboard />} />
+          <Route exact path="/admin/dashboard" element={<Dashboard />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/products" element={<ProductList />} />
+          <Route exact path="/admin/products" element={<ProductList />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/product" element={<NewProduct />} />
+          <Route exact path="/admin/product" element={<NewProduct />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/product/:id" element={<UpdateProduct />} />
+          <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/orders" element={<OrderList />} />
+          <Route exact path="/admin/orders" element={<OrderList />} />
           :
           null
       }
@@ -172,34 +176,34 @@ function App() {
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/order/:id" element={<ProcessOrder />} />
+          <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/users" element={<UsersList />} />
+          <Route exact path="/admin/users" element={<UsersList />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/user/:id" element={<UpdateUser />} />
+          <Route exact path="/admin/user/:id" element={<UpdateUser />} />
           :
           null
       }
 
       {
         isAuthenticated === true && user.role === 'admin' ?
-          <ProtectedRoute exact path="/admin/reviews" element={<ProductReviews />} />
+          <Route exact path="/admin/reviews" element={<ProductReviews />} />
           :
           null
       }
 
       
-
+      </Routes>
       <Footer />
     </Router>
   );
