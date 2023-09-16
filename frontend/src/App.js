@@ -27,6 +27,15 @@ import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct.js";
+import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import OrderList from "./component/Admin/OrderList.js";
+import ProcessOrder from "./component/Admin/ProcessOrder.js";
+import UsersList from "./component/Admin/UsersList.js";
+import UpdateUser from "./component/Admin/UpdateUser.js";
+import Contact from "./component/layout/Contact/Contact.js";
+import About from "./component/layout/About/About.js";
+import ProductReviews from "./component/Admin/ProductReviews.js";
+import NotFound from "./component/layout/Not Found/NotFound.js";
 
 function App() {
 
@@ -56,6 +65,8 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
         <Route exact path="/login" element={<LoginSignUp />} />
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/about" element={<About />} />
 
       </Routes>
 
@@ -143,6 +154,51 @@ function App() {
           :
           null
       }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/product/:id" element={<UpdateProduct />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/orders" element={<OrderList />} />
+          :
+          null
+      }
+
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/order/:id" element={<ProcessOrder />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/users" element={<UsersList />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/user/:id" element={<UpdateUser />} />
+          :
+          null
+      }
+
+      {
+        isAuthenticated === true && user.role === 'admin' ?
+          <ProtectedRoute exact path="/admin/reviews" element={<ProductReviews />} />
+          :
+          null
+      }
+
+      
 
       <Footer />
     </Router>
