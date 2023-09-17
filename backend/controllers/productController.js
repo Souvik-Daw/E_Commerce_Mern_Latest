@@ -90,7 +90,8 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   //Test exception
   //return next(new ErrorHandler("test error",500));
 
-  const resultPerPage = 3;
+  //product per page
+  const resultPerPage = 6;
 
   const productsCount = await Product.countDocuments();
 

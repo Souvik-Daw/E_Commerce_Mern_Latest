@@ -68,7 +68,7 @@ const Cart = ({ history }) => {
                     >
                       -
                     </button>
-                    <input type="number" value={item.quantity} readOnly /><spam>{item.quantity}</spam>
+                    <input type="number" value={item.quantity} readOnly />
                     <button
                       onClick={() =>
                         increaseQuantity(

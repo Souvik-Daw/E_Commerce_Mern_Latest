@@ -54,7 +54,7 @@ const Home = () => {
 
           <div className="container" id="container">
 
-            <ProductCard product={product} />
+            {/* <ProductCard product={product} /> */}
 
 
             <div className="container" id="container">

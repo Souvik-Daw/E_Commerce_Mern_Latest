@@ -10,10 +10,10 @@ const cloudinary = require("cloudinary");
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-      folder: "avatars",
-      width: 150,
-      crop: "scale",
-    });
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
 
   const { name, email, password } = req.body;
 
@@ -195,42 +195,56 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 // update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
-  const newUserData = {
-    name: req.body.name,
-    email: req.body.email,
-  };
+  try {
+    const newUserData = {
+      name: req.body.name,
+      email: req.body.email,
+    };
 
-  console.log(newUserData.name + " name   " + newUserData.email + " email    ")
+    console.log(newUserData.name + " name   " + newUserData.email + " email    ")
 
+    console.log(req.body.avatar)
 
-  if (req.body.avatar !== "") {
-    const user = await User.findById(req.user.id);
+    if (req.body.avatar !== "") {
+      console.log("inside if start")
+      const user = await User.findById(req.user.id);
 
-    const imageId = user.avatar.public_id;
+      const imageId = user.avatar.public_id;
 
-    await cloudinary.v2.uploader.destroy(imageId);
+      await cloudinary.v2.uploader.destroy(imageId);
 
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-      folder: "avatars",
-      width: 150,
-      crop: "scale",
+      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      });
+
+      newUserData.avatar = {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      };
+      console.log("inside if end")
+    }
+
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
     });
 
-    newUserData.avatar = {
-      public_id: myCloud.public_id,
-      url: myCloud.secure_url,
-    };
+    res.status(200).json({
+      success: true,
+    });
   }
-
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
-
-  res.status(200).json({
-    success: true,
-  });
+  catch (err) {
+    console.log(err);
+    return next(
+      new ErrorHandler("An error occured,try after sometime")
+    );
+    res.status(500).json({
+      success: false,
+    });
+  }
 });
 
 
